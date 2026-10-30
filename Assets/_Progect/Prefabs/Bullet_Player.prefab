@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2552316018547463005}
   - component: {fileID: 3213372199893849240}
   - component: {fileID: 7490346865782881297}
+  - component: {fileID: 4535762209743928112}
   m_Layer: 0
   m_Name: Bullet_Player
   m_TagString: Untagged
@@ -182,3 +183,18 @@ MonoBehaviour:
   speed: 12
   lifetime: 3
   hitEffect: {fileID: 966753413418181919, guid: 86b3e50c1afb722b8874d98f6b152011, type: 3}
+--- !u!114 &4535762209743928112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340935593888395978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f79db6242c70a4c0b4ed52ec574a622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplotionBullet
+  bullet: {fileID: 7490346865782881297}
+  explosionSound: {fileID: 8300000, guid: 075a18af7956687898207fb93e0577d2, type: 3}
+  volume: 1

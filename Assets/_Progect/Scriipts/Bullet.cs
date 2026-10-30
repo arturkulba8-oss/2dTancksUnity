@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
@@ -8,6 +9,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] GameObject hitEffect;     // префаб HitExplosion
 
     GameObject owner;
+
+    public event Action OnExplosionBullet;
 
     public void Init(GameObject shooter) { owner = shooter; }
 
@@ -24,7 +27,10 @@ public class Bullet : MonoBehaviour
         if (owner != null && rb != null && rb.gameObject == owner) return;   // свой танк
 
         if (hitEffect != null)
+        {
             Instantiate(hitEffect, transform.position, Quaternion.identity);
+            OnExplosionBullet?.Invoke();
+        }
         Destroy(gameObject);
     }
 }

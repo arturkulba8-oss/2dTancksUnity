@@ -384,7 +384,7 @@ MonoBehaviour:
   shooter: {fileID: 6214016068212410776}
   audioSource: {fileID: 7297185915288931967}
   shootSound: {fileID: 8300000, guid: ba1fa28e4531a33ee90c7d6d4b6478f7, type: 3}
-  volume: 1
+  volume: 0.385
 --- !u!114 &330534758659737405
 MonoBehaviour:
   m_ObjectHideFlags: 0
