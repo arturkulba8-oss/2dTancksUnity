@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2761738705833440628, guid: b9a3152bc839b811abdb8d14ade2a139, type: 3}
+  m_Sprite: {fileID: 2761738705833440628, guid: bc73dc2b0e83c420a9f0752dbb8866b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,7 +102,7 @@ Animator:
   m_GameObject: {fileID: 131839232896062847}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 33402f7947cb55049b96353837509c7b, type: 2}
+  m_Controller: {fileID: 22100000, guid: 964062626df32e49ca156c4481c1726e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -279,7 +279,6 @@ GameObject:
   - component: {fileID: 3535172767245229276}
   - component: {fileID: 5573659252757943789}
   - component: {fileID: 1825703021005251443}
-  - component: {fileID: 119183109399596069}
   - component: {fileID: 6214016068212410776}
   - component: {fileID: 7297185915288931967}
   - component: {fileID: 852420554877922826}
@@ -288,7 +287,7 @@ GameObject:
   - component: {fileID: 2539247941227702089}
   - component: {fileID: 6474886918734110685}
   m_Layer: 0
-  m_Name: greenTank
+  m_Name: TankBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -400,19 +399,6 @@ MonoBehaviour:
   moveSpeed: 2
   turnSpeed: 100
   hullAnimator: {fileID: 7957168959655865930}
---- !u!114 &119183109399596069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446507083862114961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0de99424ae1245ed89f69afe0fa1ccb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerTankInput
-  turret: {fileID: 5176128939987014966}
 --- !u!114 &6214016068212410776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TankShooter
   firePoint: {fileID: 4034817898411957356}
-  bulletPrefab: {fileID: 7490346865782881297, guid: c265fcc241c97f4949a0f60b704ad69d, type: 3}
+  bulletPrefab: {fileID: 3061583914460763175, guid: 7c71b98f8d1bb25b587dd931a688bdc1, type: 3}
   muzzleFlashPrefab: {fileID: 8582581607471573993, guid: de3d76227845f1d648629963c45ad6b8, type: 3}
   failSoundDelay: 0.3
   failSoundInterval: 0.2
@@ -775,7 +761,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2323917800338813707, guid: b220f44fe29c6bdf582674311c9008a7, type: 3}
+  m_Sprite: {fileID: 2323917800338813707, guid: 22135cb410abbe1b69c47098fab3c3e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

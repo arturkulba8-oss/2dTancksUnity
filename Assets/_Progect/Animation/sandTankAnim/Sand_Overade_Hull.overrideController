@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sand_Overade_Hull
+  m_Controller: {fileID: 9100000, guid: 33402f7947cb55049b96353837509c7b, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 1a9034a2c4a1d0dadbdedf08b5f16bb7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7574728ccd92ca9c4baee8e600557a51, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6a089b8aad7148f41a8db32b6c1a115d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 34054315c9db419dfa79aa352bd38b65, type: 2}
