@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2761738705833440628, guid: bc73dc2b0e83c420a9f0752dbb8866b9, type: 3}
+  m_Sprite: {fileID: 2761738705833440628, guid: b9a3152bc839b811abdb8d14ade2a139, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 6474886918734110685}
   m_Layer: 0
   m_Name: TankBase
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,7 +303,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.19117, y: -1.57133, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6655738858281841785}
@@ -334,7 +334,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TankShooter
   firePoint: {fileID: 4034817898411957356}
-  bulletPrefab: {fileID: 3061583914460763175, guid: 7c71b98f8d1bb25b587dd931a688bdc1, type: 3}
+  bulletPrefab: {fileID: 7490346865782881297, guid: c265fcc241c97f4949a0f60b704ad69d, type: 3}
   muzzleFlashPrefab: {fileID: 8582581607471573993, guid: de3d76227845f1d648629963c45ad6b8, type: 3}
   failSoundDelay: 0.3
   failSoundInterval: 0.2
@@ -761,7 +761,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2323917800338813707, guid: 22135cb410abbe1b69c47098fab3c3e5, type: 3}
+  m_Sprite: {fileID: 2323917800338813707, guid: b220f44fe29c6bdf582674311c9008a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -60,6 +60,18 @@ PrefabInstance:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 7490346865782881297, guid: c265fcc241c97f4949a0f60b704ad69d, type: 3}
+    - target: {fileID: 6670956036491437253, guid: 936f45866a82004f0bad963f604a7886, type: 3}
+      propertyPath: mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6670956036491437253, guid: 936f45866a82004f0bad963f604a7886, type: 3}
+      propertyPath: settings.maxShells
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957168959655865930, guid: 936f45866a82004f0bad963f604a7886, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 33402f7947cb55049b96353837509c7b, type: 2}
     - target: {fileID: 8691060037893420437, guid: 936f45866a82004f0bad963f604a7886, type: 3}
       propertyPath: m_Sprite
       value: 

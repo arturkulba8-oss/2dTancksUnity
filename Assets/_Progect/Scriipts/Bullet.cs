@@ -26,6 +26,9 @@ public class Bullet : MonoBehaviour
         var rb = other.attachedRigidbody;
         if (owner != null && rb != null && rb.gameObject == owner) return;   // свой танк
 
+        var walls = other.GetComponent<WallTilemap>();
+        if (walls != null) walls.TryHit(transform.position, transform.up);
+
         if (hitEffect != null)
         {
             Instantiate(hitEffect, transform.position, Quaternion.identity);

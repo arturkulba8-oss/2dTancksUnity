@@ -9,6 +9,7 @@ public class TankMovement : MonoBehaviour
 
     // Сюда пишет контроллер (игрок или ИИ)
     public Vector2 MoveInput { get; set; }
+    public float SurfaceMultiplier { get; set; } = 1f;
 
     Rigidbody2D rb;
     static readonly int SpeedHash = Animator.StringToHash("speed");
@@ -17,6 +18,8 @@ public class TankMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        float surface = SurfaceMultiplier;
+        SurfaceMultiplier = 1f;      // сбрасываем: если танк вышел из воды, на следующем шаге будет 1
         float speed = 0f;
         float angle = rb.rotation;
 
@@ -30,7 +33,7 @@ public class TankMovement : MonoBehaviour
             // Едем вперёд, только когда корпус почти довернулся
             float diff = Mathf.Abs(Mathf.DeltaAngle(angle, target));
             float k = Mathf.Clamp01(1f - diff / 90f);
-            speed = moveSpeed * Mathf.Clamp01(MoveInput.magnitude) * k;
+            speed = moveSpeed * surface * Mathf.Clamp01(MoveInput.magnitude) * k;
         }
 
         Vector2 forward = Quaternion.Euler(0f, 0f, angle) * Vector2.up;
