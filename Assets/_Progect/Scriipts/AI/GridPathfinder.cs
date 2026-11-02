@@ -52,7 +52,9 @@ public class GridPathfinder : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        if (walls == null) walls = FindFirstObjectByType<WallTilemap>();
+        // слой стен выбранной темы (MapLoader выключает остальные); поле в Inspector не нужно
+        var activeWalls = FindFirstObjectByType<WallTilemap>();
+        if (activeWalls != null) walls = activeWalls;
         Rebuild();
     }
 
