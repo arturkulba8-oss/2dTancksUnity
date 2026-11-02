@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5573659252757943789, guid: 936f45866a82004f0bad963f604a7886, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6214016068212410776, guid: 936f45866a82004f0bad963f604a7886, type: 3}
       propertyPath: bulletPrefab
       value: 
@@ -87,6 +91,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1446507083862114961, guid: 936f45866a82004f0bad963f604a7886, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7662359289483030215}
+    - targetCorrespondingSourceObject: {fileID: 1446507083862114961, guid: 936f45866a82004f0bad963f604a7886, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4105084064683830796}
   m_SourcePrefab: {fileID: 100100000, guid: 936f45866a82004f0bad963f604a7886, type: 3}
 --- !u!114 &4075455436418337799 stripped
 MonoBehaviour:
@@ -117,3 +124,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTankInput
   turret: {fileID: 4075455436418337799}
+--- !u!70 &4105084064683830796
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7730611827601431456}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.004151719, y: -0.16607131}
+  m_Size: {x: 1.1725887, y: 1.4483925}
+  m_Direction: 0

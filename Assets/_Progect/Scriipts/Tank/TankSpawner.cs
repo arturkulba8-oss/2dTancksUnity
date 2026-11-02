@@ -18,7 +18,7 @@ public class TankSpawner : MonoBehaviour
     [SerializeField] float spawnInterval = 3f;         // пауза между появлениями
 
     [Header("Проверка свободного места")]
-    [SerializeField] float checkRadius = 0.7f;
+    [SerializeField] Vector2 checkSize = new Vector2(0.8f, 0.9f);   // чуть меньше самого танка
     [SerializeField] LayerMask blockMask = ~0;         // что считается препятствием
 
     readonly List<Transform> enemySpawns = new();
@@ -29,8 +29,10 @@ public class TankSpawner : MonoBehaviour
 
     public int EnemiesLeft => totalEnemies - spawnedCount + aliveEnemies.Count;   // осталось уничтожить
 
+    bool warned;
     void Start()
     {
+        
         CollectSpawns();
         SpawnPlayer();
         StartCoroutine(EnemyRoutine());
@@ -69,31 +71,40 @@ public class TankSpawner : MonoBehaviour
     }
 
     void TrySpawnEnemy()
-    {
-        if (enemyPrefabs.Length == 0 || enemySpawns.Count == 0) return;
+   {
+       if (enemyPrefabs.Length == 0 || enemySpawns.Count == 0) return;
 
-        // перебираем точки в случайном порядке и берём первую свободную
-        int start = Random.Range(0, enemySpawns.Count);
-        for (int i = 0; i < enemySpawns.Count; i++)
-        {
-            var point = enemySpawns[(start + i) % enemySpawns.Count];
-            if (!IsFree(point.position)) continue;
+       Collider2D lastBlocker = null;
+       int start = Random.Range(0, enemySpawns.Count);
+       for (int i = 0; i < enemySpawns.Count; i++)
+       {
+           var point = enemySpawns[(start + i) % enemySpawns.Count];
+           if (!IsFree(point.position, out lastBlocker)) continue;
 
-            var prefab = randomEnemyType
-                ? enemyPrefabs[Random.Range(0, enemyPrefabs.Length)]
-                : enemyPrefabs[spawnedCount % enemyPrefabs.Length];
+           var prefab = randomEnemyType
+               ? enemyPrefabs[Random.Range(0, enemyPrefabs.Length)]
+               : enemyPrefabs[spawnedCount % enemyPrefabs.Length];
 
-            aliveEnemies.Add(Instantiate(prefab, point.position, Quaternion.identity));
-            spawnedCount++;
-            return;
-        }
-        // все точки заняты: попробуем на следующем тике
-    }
+           aliveEnemies.Add(Instantiate(prefab, point.position, Quaternion.identity));
+           spawnedCount++;
+           warned = false;
+           return;
+       }
 
-    bool IsFree(Vector2 pos)
-    {
-        var filter = new ContactFilter2D { useTriggers = false };   // вода и листья не мешают
-        filter.SetLayerMask(blockMask);
-        return Physics2D.OverlapCircle(pos, checkRadius, filter, buffer) == 0;
-    }
+       // все точки заняты: скажем об этом один раз и назовём виновника
+       if (!warned)
+       {
+           warned = true;
+           Debug.LogWarning("Враг не появился: все точки заняты. Мешает: " + (lastBlocker != null ? lastBlocker.name : "?"), this);
+       }
+   }
+
+   bool IsFree(Vector2 pos, out Collider2D blocker)
+   {
+       var filter = new ContactFilter2D { useTriggers = false };   // вода и листья не мешают
+       filter.SetLayerMask(blockMask);
+       int n = Physics2D.OverlapBox(pos, checkSize, 0f, filter, buffer);
+       blocker = n > 0 ? buffer[0] : null;
+       return n == 0;
+   }
 }

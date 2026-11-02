@@ -15,6 +15,8 @@ public class TankReload : MonoBehaviour
     public ReloadSettings Settings => settings;
     public ReloadMode Mode { get => mode; set { mode = value; Rebuild(); } }
     public bool CanFire => logic.CanFire;
+    public bool IsReloading => logic.IsReloading;
+    public int AmmoLeft => logic.AmmoLeft;
     public float Progress => logic.Progress;     // 0..1, можно привязать к полоске UI
 
     public int Capacity => logic.Capacity;

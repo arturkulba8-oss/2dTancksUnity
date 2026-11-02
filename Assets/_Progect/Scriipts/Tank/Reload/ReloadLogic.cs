@@ -37,10 +37,11 @@ public abstract class ReloadLogic
 
     public float Progress => reloading ? Mathf.Clamp01((Time.time - start) / duration) : 1f;
 
-    public virtual int Capacity => 1;                 // сколько патронов в полоске
-    public virtual float BarFill => Progress;         // заполнение полоски, 0..1
+    public virtual int Capacity => 1;                       // сколько патронов в полоске
+    public virtual float BarFill => Progress;               // заполнение полоски, 0..1
+    public virtual int AmmoLeft => CanFire ? 1 : 0;         // сколько патронов осталось
 
-    protected bool IsReloading => reloading;
+    public bool IsReloading => reloading;
     protected bool ReloadDone => reloading && Time.time >= start + duration;
 
     protected void BeginReload(float d)
@@ -64,6 +65,7 @@ public class FixedReload : ReloadLogic
 public class MagazineReload : ReloadLogic
 {
     int ammo; float nextShotAt;
+    
     public MagazineReload(ReloadSettings s) : base(s) { ammo = s.magazineSize; }
     public override bool CanFire => !IsReloading && ammo > 0 && Time.time >= nextShotAt;
     public override void OnShot()
@@ -74,12 +76,16 @@ public class MagazineReload : ReloadLogic
     public override void Tick() { if (ReloadDone) { ammo = s.magazineSize; EndReload(); } }
 
     public override int Capacity => s.magazineSize;
+
+    public override int AmmoLeft => ammo;
 }
 
 // 3) Снаряды заряжаются по одному
 public class PerShellReload : ReloadLogic
 {
     int ammo;
+
+
     float nextShotAt;
 
     public PerShellReload(ReloadSettings s) : base(s) { ammo = s.maxShells; }
@@ -103,4 +109,7 @@ public class PerShellReload : ReloadLogic
         if (ammo < s.maxShells) BeginReload(s.perShellTime);   // следующий снаряд
         else EndReload();
     }
+
+    public override int AmmoLeft => ammo;
+
 }

@@ -56,6 +56,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5573659252757943789, guid: 936f45866a82004f0bad963f604a7886, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6670956036491437253, guid: 936f45866a82004f0bad963f604a7886, type: 3}
+      propertyPath: mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6670956036491437253, guid: 936f45866a82004f0bad963f604a7886, type: 3}
+      propertyPath: settings.fixedTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7957168959655865930, guid: 936f45866a82004f0bad963f604a7886, type: 3}
       propertyPath: m_Controller
       value: 
@@ -71,5 +83,81 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1446507083862114961, guid: 936f45866a82004f0bad963f604a7886, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1797726427840593920}
+    - targetCorrespondingSourceObject: {fileID: 1446507083862114961, guid: 936f45866a82004f0bad963f604a7886, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8820867724510195002}
   m_SourcePrefab: {fileID: 100100000, guid: 936f45866a82004f0bad963f604a7886, type: 3}
+--- !u!1 &7588194786198878928 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1446507083862114961, guid: 936f45866a82004f0bad963f604a7886, type: 3}
+  m_PrefabInstance: {fileID: 9033561641050634305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1797726427840593920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7588194786198878928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d26999c213217bbbca6d3df51c8ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  viewRange: 10
+  attackRange: 7
+  bushViewMultiplier: 0.35
+  loseSightTime: 3
+  minKeepDistance: 3
+  aimTolerance: 6
+  reactionDelay: 0.3
+  nodeReachDistance: 0.25
+  breakDistance: 1.35
+  repathInterval: 0.6
+  separationRadius: 1.8
+  separationWeight: 1.2
+  stuckTime: 1.2
+  patrolRadius: 8
+  patrolWait: 1.5
+  drawGizmos: 1
+--- !u!70 &8820867724510195002
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7588194786198878928}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -0.13055766}
+  m_Size: {x: 1.1226597, y: 1.4619732}
+  m_Direction: 0
