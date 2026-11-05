@@ -9,7 +9,7 @@ public class TankSpawner : MonoBehaviour
 
     [Header("Игрок")]
     [SerializeField] GameObject playerPrefab;          // Tank_Player
-
+    [SerializeField] float minDistanceFromPlayer = 10f;
     [Header("Враги")]
     [SerializeField] GameObject[] enemyPrefabs;        // Tank_Enemy_Red, Tank_Enemy_Sand...
     [SerializeField] bool randomEnemyType = true;
@@ -27,6 +27,7 @@ public class TankSpawner : MonoBehaviour
     readonly List<GameObject> aliveEnemies = new();
     readonly Collider2D[] buffer = new Collider2D[8];
     Transform playerSpawn;
+    Transform cachedPlayerTransform; // Кэшируем ссылку на игрока для быстрого доступа
     int spawnedCount;
 
     public event System.Action AllEnemiesDefeated;
@@ -86,7 +87,12 @@ public class TankSpawner : MonoBehaviour
         if (playerSpawn == null) return;
 
         var existing = GameObject.FindWithTag("Player");    // если игрок уже стоит в сцене, просто переносим
-        if (existing != null) { existing.transform.position = playerSpawn.position; return; }
+        if (existing != null) 
+        { 
+            existing.transform.position = playerSpawn.position; 
+            cachedPlayerTransform = existing.transform;
+            return; 
+        }
 
         if (playerPrefab != null) Instantiate(playerPrefab, playerSpawn.position, Quaternion.identity);
     }
@@ -118,11 +124,28 @@ public class TankSpawner : MonoBehaviour
    {
        if (enemyPrefabs.Length == 0 || enemySpawns.Count == 0) return;
 
+       if (cachedPlayerTransform == null)
+        {
+            var playerObj = GameObject.FindWithTag("Player");
+            if (playerObj != null) cachedPlayerTransform = playerObj.transform;
+        }
+
        Collider2D lastBlocker = null;
        int start = Random.Range(0, enemySpawns.Count);
        for (int i = 0; i < enemySpawns.Count; i++)
        {
            var point = enemySpawns[(start + i) % enemySpawns.Count];
+
+            if (cachedPlayerTransform != null)
+            {
+                float sqrDist = (point.position - cachedPlayerTransform.position).sqrMagnitude;
+                // Используем sqrMagnitude вместо Vector2.Distance для оптимизации (чтобы не считать квадратный корень)
+                if (sqrDist < minDistanceFromPlayer * minDistanceFromPlayer)
+                {
+                    continue; // Эта точка слишком близко к игроку, пропускаем её
+                }
+            }
+
            if (!IsFree(point.position, out lastBlocker)) continue;
 
            var prefab = randomEnemyType

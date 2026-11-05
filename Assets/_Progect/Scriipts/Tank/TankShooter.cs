@@ -4,6 +4,7 @@ using System;
 public class TankShooter : MonoBehaviour
 {
     [SerializeField] Transform firePoint;
+    [SerializeField] Transform muzzlePoint;
     [SerializeField] Bullet bulletPrefab;
     [SerializeField] GameObject muzzleFlashPrefab;
     [SerializeField] float failSoundDelay = 0.3f;      // защита: пауза после выстрела, когда «щелчок» не играет
@@ -37,7 +38,10 @@ public class TankShooter : MonoBehaviour
         bullet.Init(gameObject);
 
         if (muzzleFlashPrefab != null)
-            Instantiate(muzzleFlashPrefab, firePoint.position, firePoint.rotation, firePoint);
+        {
+            Instantiate(muzzleFlashPrefab, muzzlePoint.position , muzzlePoint.rotation, muzzlePoint);
+        }
+            
 
         OnTankFired?.Invoke();
     }

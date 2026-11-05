@@ -3037,6 +3037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TankSpawner
   spawnsRoot: {fileID: 330828570}
   playerPrefab: {fileID: 7730611827601431456, guid: f73b8627a0bb870dd948f3854863cd0d, type: 3}
+  minDistanceFromPlayer: 10
   enemyPrefabs:
   - {fileID: 2227494208337348211, guid: 75094f01afee3fdb7b5bfc629f4bea00, type: 3}
   - {fileID: 7588194786198878928, guid: a024ac81b9ee81fd095f522867262194, type: 3}
