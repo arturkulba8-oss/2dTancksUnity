@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TurretAim : MonoBehaviour
 {
-    [SerializeField] float rotateSpeed = 400f;   // градусов в секунду
+    [SerializeField] float rotateSpeed = 800f;   // градусов в секунду
 
     // Сюда пишет контроллер (игрок или ИИ)
     public Vector2 AimInput { get; set; }

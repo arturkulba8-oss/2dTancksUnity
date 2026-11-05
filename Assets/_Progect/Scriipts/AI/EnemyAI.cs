@@ -136,6 +136,7 @@ public class EnemyAI : MonoBehaviour
 
     bool EnsurePlayer()
     {
+        if (player != null && !player.CompareTag("Player")) player = null;   // игрок погиб: ему сняли тег
         if (player != null) return true;
         if (Time.time < nextPlayerSearch) return false;
         nextPlayerSearch = Time.time + 0.5f;

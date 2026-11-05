@@ -21,18 +21,50 @@ public class TankSpawner : MonoBehaviour
     [SerializeField] Vector2 checkSize = new Vector2(0.8f, 0.9f);   // чуть меньше самого танка
     [SerializeField] LayerMask blockMask = ~0;         // что считается препятствием
 
+
+
     readonly List<Transform> enemySpawns = new();
     readonly List<GameObject> aliveEnemies = new();
     readonly Collider2D[] buffer = new Collider2D[8];
     Transform playerSpawn;
     int spawnedCount;
 
-    public int EnemiesLeft => totalEnemies - spawnedCount + aliveEnemies.Count;   // осталось уничтожить
+    public event System.Action AllEnemiesDefeated;
 
+    public int EnemiesLeft
+   {
+       get
+       {
+           aliveEnemies.RemoveAll(e => e == null);      // убрать уничтоженных
+           return (totalEnemies - spawnedCount) + aliveEnemies.Count;
+       }
+   }
     bool warned;
     void Start()
     {
-        
+        int levelId = SaveGameSettings.Instance.selectedLevelId;
+        switch (levelId)
+        {
+            case 1:
+                totalEnemies = 3;
+                maxAliveAtOnce = 1;
+                break;
+            case 2:
+                totalEnemies = 6;
+                maxAliveAtOnce = 2;
+                break;
+            case 3:
+                totalEnemies = 9;
+                maxAliveAtOnce = 2;
+                break;
+            case 4:
+                totalEnemies = 15;
+                maxAliveAtOnce = 2;
+                break;
+            default:
+                break;
+        }
+
         CollectSpawns();
         SpawnPlayer();
         StartCoroutine(EnemyRoutine());
@@ -59,16 +91,28 @@ public class TankSpawner : MonoBehaviour
         if (playerPrefab != null) Instantiate(playerPrefab, playerSpawn.position, Quaternion.identity);
     }
 
-    IEnumerator EnemyRoutine()
-    {
-        var wait = new WaitForSeconds(spawnInterval);
-        while (spawnedCount < totalEnemies)
-        {
-            aliveEnemies.RemoveAll(e => e == null);          // убрать уничтоженных
-            if (aliveEnemies.Count < maxAliveAtOnce) TrySpawnEnemy();
-            yield return wait;
-        }
-    }
+   IEnumerator EnemyRoutine()
+   {
+       var wait = new WaitForSeconds(spawnInterval);
+       while (spawnedCount < totalEnemies)
+       {
+           aliveEnemies.RemoveAll(e => e == null);          // убрать уничтоженных
+           if (aliveEnemies.Count < maxAliveAtOnce) TrySpawnEnemy();
+           yield return wait;
+       }
+
+       // всех выпустили: ждём, пока перебьют последних
+       var poll = new WaitForSeconds(0.25f);
+       while (true)
+       {
+           aliveEnemies.RemoveAll(e => e == null);
+           if (aliveEnemies.Count == 0) break;
+           yield return poll;
+       }
+       AllEnemiesDefeated?.Invoke();                        // ПОБЕДА: все враги убиты
+   }
+
+    public void StopSpawning() { StopAllCoroutines(); }
 
     void TrySpawnEnemy()
    {

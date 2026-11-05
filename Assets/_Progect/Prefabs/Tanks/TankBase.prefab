@@ -286,6 +286,9 @@ GameObject:
   - component: {fileID: 6670956036491437253}
   - component: {fileID: 2539247941227702089}
   - component: {fileID: 6474886918734110685}
+  - component: {fileID: 4794264875542389645}
+  - component: {fileID: 7321228953745203068}
+  - component: {fileID: 849645125246396501}
   m_Layer: 0
   m_Name: TankBase
   m_TagString: Player
@@ -399,6 +402,9 @@ MonoBehaviour:
   moveSpeed: 2
   turnSpeed: 100
   hullAnimator: {fileID: 7957168959655865930}
+  reverseAngle: 90
+  reverseHysteresis: 20
+  reverseSpeedFactor: 0.7
 --- !u!114 &6214016068212410776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,6 +653,57 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4794264875542389645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446507083862114961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2c5d22b7659907aa07d13a05a5dca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 4
+  startHealth: 3
+  invulnerableTime: 0.15
+--- !u!114 &7321228953745203068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446507083862114961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4215c169454969cbf82e74ec6ce4b26c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TankDeath
+  isPlayer: 0
+  deathEffect: {fileID: 0}
+  effectScale: 1.6
+  dropPrefab: {fileID: 0}
+  dropChance: 1
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &849645125246396501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446507083862114961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384cd2d64986e77598be9262a93f413a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFeedback
+  flashColor: {r: 1, g: 0.4, b: 0.4, a: 1}
+  flashTime: 0.1
+  blinkInterval: 0.08
+  blinkAlpha: 0.45
 --- !u!1 &2720596253617987728
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,4 +840,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48a660b5aa5ebe3cabd83ca74c6f976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurretAim
-  rotateSpeed: 150
+  rotateSpeed: 300
