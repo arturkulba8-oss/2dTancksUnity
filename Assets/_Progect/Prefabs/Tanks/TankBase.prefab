@@ -534,7 +534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TankShotEfe
   shooter: {fileID: 6214016068212410776}
   audioSource: {fileID: 7297185915288931967}
-  shootSound: {fileID: 8300000, guid: ba1fa28e4531a33ee90c7d6d4b6478f7, type: 3}
+  shootSound: {fileID: 8300000, guid: d647af23300feaf1cabc0c8be8b302da, type: 3}
   volume: 0.385
 --- !u!114 &330534758659737405
 MonoBehaviour:
@@ -701,8 +701,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384cd2d64986e77598be9262a93f413a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageFeedback
-  flashColor: {r: 1, g: 0.4, b: 0.4, a: 1}
-  flashTime: 0.1
+  flashColor: {r: 0.9811321, g: 0.24528302, b: 0.24528302, a: 1}
+  flashTime: 0.5
   blinkInterval: 0.08
   blinkAlpha: 0.45
 --- !u!1 &2720596253617987728

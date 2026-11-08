@@ -1,10 +1,23 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 // Скрипт сцены «level_end»: показывает победу или поражение и ведёт дальше.
 // Висит на Canvas этой сцены (всегда активный объект).
 public class LevelEndScreen : MonoBehaviour
 {
+
+    [System.Serializable]
+    public struct LevelUIIcon
+    {
+        public int levelId;
+        public GameObject star1; // Иконка первой звезды/статуса
+        public GameObject star2; // Иконка второй звезды
+        public GameObject star3; // Иконка третьей звезды
+    }
+
+    [Header("Список кнопок/иконок КАРТОЧЕК ")]
+    [SerializeField] private LevelUIIcon[] levelIcons;
 
     [Header("Звуки")]
     [SerializeField] AudioSource audioSource;
@@ -24,7 +37,7 @@ public class LevelEndScreen : MonoBehaviour
     [SerializeField] string mainMenuScene = "main_menu";
 
     [Header("Уровни")]
-    [SerializeField] int totalLevels = 4;             // сколько всего уровней (длина mapFiles в MapLoader)
+    [SerializeField] int totalLevels = 16;             // сколько всего уровней (длина mapFiles в MapLoader)
 
     [Header("Для теста, если сцену запустили напрямую")]
     [SerializeField] bool testVictory = false;
@@ -58,6 +71,8 @@ public class LevelEndScreen : MonoBehaviour
         } 
         
         if (nextLevelButton != null) nextLevelButton.SetActive(hasNext);
+
+        LoadAndDisplayProgress();
     }
 
     // Эти методы вешаются на кнопки (On Click)
@@ -77,5 +92,24 @@ public class LevelEndScreen : MonoBehaviour
     {
         if (audioSource != null && sound != null)
             audioSource.PlayOneShot(sound, volume);
+    }
+
+    public void LoadAndDisplayProgress()
+    {
+        int currentMap = SaveGameSettings.Instance != null ? SaveGameSettings.Instance.selectedMapId : 0;
+        levelIcons[0].levelId = SaveGameSettings.Instance.selectedLevelId;
+        levelIcons[1].levelId = SaveGameSettings.Instance.selectedLevelId;
+
+        foreach (var icon in levelIcons)
+        {
+            
+            // Запрашиваем состояние (от 0 до 3) из PlayerPrefs через синглтон
+            int state = SaveGameSettings.Instance.GetLevelState(currentMap, icon.levelId);
+
+            // Отрисовываем в зависимости от состояния
+            if (icon.star1 != null) icon.star1.SetActive(state >= 1);
+            if (icon.star2 != null) icon.star2.SetActive(state >= 2);
+            if (icon.star3 != null) icon.star3.SetActive(state >= 3);
+        }
     }
 }

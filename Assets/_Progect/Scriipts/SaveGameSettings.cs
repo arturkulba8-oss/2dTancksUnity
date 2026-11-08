@@ -10,6 +10,8 @@ public class SaveGameSettings : MonoBehaviour
     // Номер выбранного уровня (с 1)
     public int selectedLevelId = 0;
 
+    public bool redactButton = false;
+
     // Итог последнего уровня (читает сцена level_end)
     public LevelResult lastResult = LevelResult.None;
 
@@ -43,5 +45,20 @@ public class SaveGameSettings : MonoBehaviour
             PlayerPrefs.SetInt("highestUnlockedLevel", next);
             PlayerPrefs.Save();
         }
+    }
+
+    // Сохранить состояние (от 1 до 3) для конкретной карты и уровня
+    public void SaveLevelState(int mapId, int levelId, int state)
+    {
+        string key = $"Map_{mapId}_Level_{levelId}_State";
+        PlayerPrefs.SetInt(key, state);
+        PlayerPrefs.Save();
+    }
+
+    // Получить состояние уровня (возвращает 0, если уровень еще не проходили)
+    public int GetLevelState(int mapId, int levelId)
+    {
+        string key = $"Map_{mapId}_Level_{levelId}_State";
+        return PlayerPrefs.GetInt(key, 0); 
     }
 }

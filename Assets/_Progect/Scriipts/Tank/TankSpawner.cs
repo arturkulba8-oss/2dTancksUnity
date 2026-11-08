@@ -14,6 +14,7 @@ public class TankSpawner : MonoBehaviour
     [SerializeField] GameObject[] enemyPrefabs;        // Tank_Enemy_Red, Tank_Enemy_Sand...
     [SerializeField] bool randomEnemyType = true;
     [SerializeField] int totalEnemies = 10;            // сколько врагов за весь уровень
+    public int TotalEnemies => totalEnemies;
     [SerializeField] int maxAliveAtOnce = 4;           // сколько одновременно на карте
     [SerializeField] float spawnInterval = 3f;         // пауза между появлениями
 
@@ -62,10 +63,58 @@ public class TankSpawner : MonoBehaviour
                 totalEnemies = 15;
                 maxAliveAtOnce = 2;
                 break;
+            case 5:
+                totalEnemies = 18;
+                maxAliveAtOnce = 2;
+                break;
+            case 6:
+                totalEnemies = 20;
+                maxAliveAtOnce = 2;
+                break;
+            case 7:
+                totalEnemies = 22;
+                maxAliveAtOnce = 2;
+                break;
+            case 8:
+                totalEnemies = 24;
+                maxAliveAtOnce = 3;
+                break;
+            case 9:
+                totalEnemies = 26;
+                maxAliveAtOnce = 3;
+                break;
+            case 10:
+                totalEnemies = 28;
+                maxAliveAtOnce = 3;
+                break;
+            case 11:
+                totalEnemies = 30;
+                maxAliveAtOnce = 3;
+                break;
+            case 12:
+                totalEnemies = 32;
+                maxAliveAtOnce = 3;
+                break;
+            case 13:
+                totalEnemies = 34;
+                maxAliveAtOnce = 3;
+                break;
+            case 14:
+                totalEnemies = 36;
+                maxAliveAtOnce = 3;
+                break;
+            case 15:
+                totalEnemies = 38;
+                maxAliveAtOnce = 3;
+                break;
+            case 16:
+                totalEnemies = 40;
+                maxAliveAtOnce = 3;
+                break;
             default:
                 break;
         }
-
+        
         CollectSpawns();
         SpawnPlayer();
         StartCoroutine(EnemyRoutine());

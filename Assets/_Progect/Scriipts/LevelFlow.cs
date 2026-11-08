@@ -76,6 +76,7 @@ public class LevelFlow : MonoBehaviour
 
         if (!string.IsNullOrEmpty(resultScene))
         {
+            resultStar();
             SceneManager.LoadScene(resultScene);          // отдельная сцена «конец уровня»
             yield break;
         }
@@ -89,5 +90,21 @@ public class LevelFlow : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void resultStar()
+    {
+        int levelId = SaveGameSettings.Instance.selectedLevelId;
+        int mapId = SaveGameSettings.Instance.selectedMapId;
+        int left = spawner.EnemiesLeft;
+        int total = spawner.TotalEnemies;
+        if((total - left) < (total / 3))
+            SaveGameSettings.Instance.SaveLevelState(mapId, levelId, 0);
+        else if((total - left) < (total / 3) * 2 )
+            SaveGameSettings.Instance.SaveLevelState(mapId, levelId, 1);
+        else if((total - left) < total )
+            SaveGameSettings.Instance.SaveLevelState(mapId, levelId, 2);
+        else if((total - left) == total )
+            SaveGameSettings.Instance.SaveLevelState(mapId, levelId, 3);
     }
 }

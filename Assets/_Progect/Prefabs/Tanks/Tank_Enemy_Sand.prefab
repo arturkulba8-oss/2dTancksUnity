@@ -218,20 +218,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d26999c213217bbbca6d3df51c8ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  viewRange: 10
-  attackRange: 7
-  bushViewMultiplier: 0.35
+  viewRange: 8
+  attackRange: 6
+  bushViewMultiplier: 0.351
   loseSightTime: 5
   minKeepDistance: 3
-  aimTolerance: 15
-  reactionDelay: 0.5
+  aimTolerance: 25
+  reactionDelay: 1
   nodeReachDistance: 0.25
   breakDistance: 1.35
   repathInterval: 0.6
   separationRadius: 1.8
   separationWeight: 1.2
   stuckTime: 1.2
-  patrolRadius: 8
+  patrolRadius: 15
   patrolWait: 1.5
   drawGizmos: 1
 --- !u!70 &8820867724510195002
@@ -269,7 +269,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.13055766}
-  m_Size: {x: 1.1226597, y: 1.4619732}
+  m_Size: {x: 1.1226597, y: 1.178393}
   m_Direction: 0
 --- !u!4 &7943230014152934058 stripped
 Transform:
